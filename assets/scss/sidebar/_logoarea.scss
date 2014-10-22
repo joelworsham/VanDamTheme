@@ -1,0 +1,19 @@
+/*
+ * The main sidebar logo area.
+ *
+ * @since VanDam 0.1
+ */
+
+#site-logo {
+  @include hide-for-mobile;
+
+  padding: $gutter;
+  text-align: center;
+}
+
+// Mobile logo area (in content)
+#site-logo-mobile {
+  @media screen and (min-width: $mobile-breakpoint) {
+    display: none;
+  }
+}

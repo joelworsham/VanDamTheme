@@ -1,0 +1,52 @@
+/*
+ * Full width page templates.
+ *
+ * @since VanDam 0.1
+ */
+
+body.full-width {
+
+  #site-logo-mobile {
+    display: none;
+  }
+
+  #mobile-header {
+    display: block;
+  }
+
+  #wrapper > .inner-wrap {
+    margin-top: $mobile-header-height;
+  }
+
+  @media screen and (min-width: $mobile-breakpoint) {
+
+    #wrapper.move-right {
+      > .inner-wrap {
+        transform: translate3d(420px, 0, 0) !important;
+      }
+    }
+  }
+
+  #site-content {
+    width: 100%;
+  }
+
+  #site-sidebar {
+    @extend .left-off-canvas-menu;
+    width: 100%;
+    background: none;
+
+    @media screen and (min-width: $mobile-breakpoint) {
+      width: 300px;
+
+      [class^="off-canvas-toggle-full"] {
+        display: none;
+      }
+    }
+  }
+  &.move-right > .inner-wrap {
+    @media screen and (min-width: $mobile-breakpoint) {
+      transform: translate3d(300px, 0, 0) !important;
+    }
+  }
+}

@@ -1,0 +1,38 @@
+/*
+ * The fly-out nav menu.
+ *
+ * @since VanDam 0.1.0
+ */
+
+// Fly-out menus
+.flyout {
+  margin: 0;
+  background: #777;
+  color: #fff;
+  padding: $gutter;
+  box-sizing: inherit;
+  font-weight: $font-weight-normal;
+  display: none;
+
+  left: 300px + $border-left-width;
+  height: 100%;
+  top: auto;
+  bottom: auto;
+  width: 200px;
+  z-index:1;
+  transform: none;
+
+  &.active {
+    display: block;
+  }
+
+  a {
+    &:hover {
+      color: darken(#fff, 10%);
+    }
+  }
+
+  * {
+    color: inherit;
+  }
+}

@@ -1,0 +1,59 @@
+/*
+ * Basic structure for the sidebar area.
+ *
+ * @since VanDam 0.1
+ */
+
+#site-sidebar {
+  padding-left: $border-left-width;
+  background: $light-color;
+  width: 100%;
+
+  @media screen and (max-width: $mobile-breakpoint) {
+    padding-top: $mobile-header-height;
+  }
+
+  .secondary-logo {
+    position: fixed;
+    text-align: center;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
+
+    .tagline {
+      position: absolute;
+      left: $border-left-width;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      font-weight: bold;
+
+      @include hide-for-mobile;
+    }
+  }
+
+  .left-border {
+    position: absolute;
+    left: 0;
+    width: $border-left-width;
+    top: 0;
+    bottom: 0;
+    background: $primary-color;
+    z-index: 1;
+  }
+
+  // Disable mobile on large screens
+  @media screen and (min-width: $mobile-breakpoint) {
+    width: 300px + $border-left-width;
+    height: 100%;
+    overflow-y: scroll;
+    top: auto;
+    bottom: auto;
+    left: auto;
+    position: static;
+    z-index: auto;
+    box-sizing: border-box;
+    transform: translate3d(0,0,0);
+    float: left;
+  }
+}

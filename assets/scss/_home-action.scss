@@ -1,0 +1,278 @@
+$icon-collapsed: 75px;
+$icon-expand-factor: 2;
+$icon-transition: 500ms;
+$icon-fire: #CF5D5E;
+$icon-water: #5A5681;
+$icon-wind: #5E78A5;
+$icon-lightening: #EDC135;
+$icon-mold: #899949;
+$icon-information: #62A921;
+$icon-phone: #4b8a7e;
+$icon-hammer: #7f5b4e;
+
+$icon-expanded: $icon-collapsed * $icon-expand-factor;
+
+@mixin icon($icon, $top, $left, $color) {
+  .icon-#{$icon} {
+    top: $top;
+    left: $left;
+
+    .color-fill {
+      background: $color;
+    }
+  }
+}
+
+@mixin icon-mobile($icon, $color) {
+  .icon-#{$icon} {
+    background: $color;
+  }
+}
+
+#home-action {
+  position: relative;
+
+  @include hide-for-mobile;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  [class*="icon-"] {
+    position: absolute;
+    width: $icon-collapsed;
+    height: $icon-collapsed;
+    border-radius: $icon-collapsed / 2;
+    overflow: hidden;
+    background: #fff;
+    padding: 5px;
+    cursor: pointer;
+    box-shadow: 4px 4px 20px rgba(#000, 0.9);
+    transition: all $icon-transition;
+
+    .content {
+      visibility: hidden;
+      opacity: 0;
+      background: #fff;
+      top: 50%;
+      height: 50%;
+      width: 200%;
+      position: absolute;
+      transition: all $icon-transition;
+      text-align: center;
+      padding: 10px 10px 0 10px;
+      z-index: 3;
+      color: $body-font-color;
+      font-family: $body-font-family;
+
+      font-size: 11px;
+      font-weight: normal;
+      text-transform: uppercase;
+    }
+
+    .color-fill {
+      position: absolute;
+      border-radius: $icon-collapsed / 2;
+      width: $icon-collapsed * 0.85;
+      height: $icon-collapsed * 0.85;
+      top: $icon-collapsed * 0.075;
+      left: $icon-collapsed * 0.075;
+      z-index: 1;
+      transition: all $icon-transition;
+
+      // Fix rounded corners and overflow hidden issue in Chrome (bugfix)
+      -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
+    }
+
+    &:before {
+      position: absolute;
+      z-index: 2;
+      top: 50%;
+      left: 50%;
+      transform: translateY(-50%) translateX(-50%);
+      color: #fff;
+      font-size: 43px;
+      transition: all $icon-transition;
+    }
+
+    &:hover {
+      width: $icon-expanded;
+      height: $icon-expanded;
+      border-radius: $icon-expanded / 2;
+
+      // Keep centered when expanding
+      margin-left: - ($icon-collapsed / $icon-expand-factor);
+      margin-top: - ($icon-collapsed / $icon-expand-factor);
+
+      .content {
+        visibility: visible;
+        opacity: 1;
+        width: 100%;
+      }
+
+      .color-fill {
+        border-radius: $icon-expanded / 2;
+        width: $icon-expanded * 0.85;
+        height: $icon-expanded * 0.85;
+        top: $icon-expanded * 0.075;
+        left: $icon-expanded * 0.075;
+      }
+
+      &:before {
+        transform: translateY(-50%);
+        top: 32%;
+        left: $icon-expanded * 0.2;
+      }
+    }
+  }
+
+  // Make icons smaller when screen gets smaller
+  @media screen and (max-width: 900px) {
+    $icon-mobile-collapsed: 50px;
+    $icon-mobile-expanded: $icon-mobile-collapsed * $icon-expand-factor;
+
+    [class*="icon-"] {
+      width: $icon-mobile-collapsed;
+      height: $icon-mobile-collapsed;
+      border-radius: $icon-mobile-collapsed / 2;
+
+      .color-fill {
+        border-radius: $icon-mobile-collapsed / 2;
+        width: $icon-mobile-collapsed * 0.85;
+        height: $icon-mobile-collapsed * 0.85;
+        top: $icon-mobile-collapsed * 0.075;
+        left: $icon-mobile-collapsed * 0.075;
+      }
+
+      .content {
+        padding-top: 3px;
+        font-size: 9px;
+      }
+
+      &:before {
+        font-size: 24px;
+      }
+
+      &:hover {
+        width: $icon-mobile-expanded;
+        height: $icon-mobile-expanded;
+        border-radius: $icon-mobile-expanded / 2;
+
+        // Keep centered when expanding
+        margin-left: - ($icon-mobile-collapsed / $icon-expand-factor);
+        margin-top: - ($icon-mobile-collapsed / $icon-expand-factor);
+
+        .color-fill {
+          border-radius: $icon-mobile-expanded / 2;
+          width: $icon-mobile-expanded * 0.85;
+          height: $icon-mobile-expanded * 0.85;
+          top: $icon-mobile-expanded * 0.075;
+          left: $icon-mobile-expanded * 0.075;
+        }
+
+        &:before {
+          left: $icon-mobile-expanded * 0.2;
+        }
+      }
+    }
+  }
+
+  // Individual icons
+  @include icon('fire', 22%, 37%, $icon-fire);
+  @include icon('water', 64%, 66%, $icon-water);
+  @include icon('wind', 20%, 14%, $icon-wind);
+  @include icon('lightening', 10%, 55%, $icon-lightening);
+  @include icon('hammer', 49%, 44%, $icon-hammer);
+  @include icon('mold', 46%, 81%, $icon-mold);
+  @include icon('information', 71%, 16%, $icon-information);
+  @include icon('phone', 88%, 39%, $icon-phone);
+}
+
+// MOBILE
+#home-action-mobile {
+  display: none;
+  @include show-for-mobile;
+  text-align: center;
+  padding: 0 $gutter;
+
+  .tagline {
+    font-style: italic;
+  }
+
+  // TODO Remove
+  .tagline, .locations {
+    margin: 0 !important;
+  }
+
+  .button-alt {
+    width: 100%;
+
+    // TODO Remove
+    background: transparent;
+    color: $body-font-color;
+
+    .left {
+      float: none !important;
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    .right {
+      float: none !important;
+      display: inline-block;
+      text-align: left;
+    }
+
+    .icon-phone {
+      font-size: 30px;
+    }
+  }
+
+  .home-icons {
+    list-style: none;
+    padding: 0;
+    margin: 0 -5px;
+    width: auto;
+    max-width: none;
+
+    li {
+      float: left;
+      width: 25%;
+      padding: 5px;
+    }
+
+    .container {
+      background: #fff;
+      padding: 5px;
+      box-shadow: 4px 4px 10px rgba(#000, 0.4);
+    }
+
+    .color-fill {
+      // Will be overridden by JS, just a starting point
+      height: 50px;
+    }
+
+    [class*="icon-"] {
+      color: #fff;
+      font-size: 42px;
+
+      &:before {
+        position: relative;
+        display: block;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+
+    // Individual icons
+    @include icon-mobile('fire', $icon-fire);
+    @include icon-mobile('water', $icon-water);
+    @include icon-mobile('wind', $icon-wind);
+    @include icon-mobile('lightening', $icon-lightening);
+    @include icon-mobile('hammer', $icon-hammer);
+    @include icon-mobile('mold', $icon-mold);
+    @include icon-mobile('information', $icon-information);
+    @include icon-mobile('location', $icon-phone);
+  }
+}

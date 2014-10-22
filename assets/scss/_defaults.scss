@@ -1,0 +1,73 @@
+/*
+ * Theme related defaults for generic items.
+ *
+ * @since VanDam 0.1
+ */
+
+@mixin hide-for-mobile {
+  @media screen and (max-width: $mobile-breakpoint) {
+    display: none;
+  }
+}
+
+@mixin show-for-mobile {
+  @media screen and (max-width: $mobile-breakpoint) {
+    display: block;
+  }
+}
+
+body {
+  font-family: $body-font-family;
+  line-height: normal;
+}
+
+a {
+  color: $secondary-color;
+
+  &:hover {
+    color: lighten($secondary-color, 20%);
+  }
+}
+
+// Links in the body
+.body-content {
+  a {
+    text-decoration: underline;
+  }
+}
+
+h1 {
+  color: $secondary-color;
+  font-size: 220%;
+  font-weight: $font-bold;
+}
+
+h2, h3, h3, h4, h5, h6 {
+  font-size: 150%;
+  font-weight: $font-semi-bold;
+}
+
+// Make sure the fly-out stretches all the way
+#wrapper {
+  height: 100%;
+
+  > .inner-wrap {
+    height: 100%;
+
+    // Space for mobile header
+    @media screen and (max-width: $mobile-breakpoint) {
+      padding-top: $mobile-header-height;
+    }
+  }
+}
+
+input[type="submit"], .button-alt {
+  @include button;
+  background: $secondary-color;
+  color: #fff;
+
+  &:hover {
+    background: lighten($secondary-color, 10%);
+    color: #fff;
+  }
+}

@@ -1,0 +1,28 @@
+/*
+ * All theme-related, generic classes.
+ *
+ * @since VanDam 0.1
+ */
+
+.clear {
+  clear: both;
+  display: table;
+}
+
+.alignleft {
+  float: left;
+  margin-right: 10px;
+}
+
+.alignright {
+  float: right;
+  margin-left: 10px;
+}
+
+.aligncenter {
+  margin: 0 auto;
+}
+
+.post-edit-link {
+  font-size: 50%;
+}

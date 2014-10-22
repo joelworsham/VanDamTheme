@@ -1,0 +1,33 @@
+/*
+ * The sidebar nav menu.
+ *
+ * @since VanDam 0.1
+ */
+
+$social-icon-color: #999;
+
+#site-social {
+  list-style: none;
+  text-align: center;
+  margin: 10px 0 0 0;
+  padding: 0;
+
+  @include hide-for-mobile;
+
+  // Each social icon
+  [class^="social"] {
+    display: inline-block;
+    text-align: center;
+    font-size: 35px;
+    margin: 0 10px;
+
+    a {
+      color: $social-icon-color;
+    }
+
+    // For hovering
+    &:hover a {
+      color: darken($social-icon-color, 10%);
+    }
+  }
+}

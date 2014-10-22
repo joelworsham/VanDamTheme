@@ -1,0 +1,26 @@
+/*
+ * This file does not contain styling rules, but rather a guide to
+ * what I've overwritten. So I can remember after updating.
+ *
+ * @since VanDam 0.1
+ */
+
+// .off-canvas-wrap { remove width }
+
+#wpadminbar {
+  position: fixed !important;
+}
+
+.off-canvas-wrap {
+//  overflow: auto;
+}
+
+body.admin-bar {
+  #wrapper {
+    padding-top: 32px;
+
+    @media screen and (max-width: $wp-breakpoint) {
+      padding-top: 46px;
+    }
+  }
+}

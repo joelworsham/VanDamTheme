@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+/*
+ * The main SCSS loader.
+ *
+ * @since VanDam 0.1
+ */
+
+// Dependencies
+@import "deps/normalize";
+@import "deps/settings";
+@import "deps/icons";
+
+// Foundation
+@import "deps/foundation/components/grid";
+@import "deps/foundation/components/forms";
+@import "deps/foundation/components/buttons";
+@import "deps/foundation/components/offcanvas";
+
+// Theme files
+@import "classes";
+@import "defaults";
+
+@import "nav/navmenu";
+@import "nav/flyout";
+
+@import "sidebar/sidebar";
+@import "sidebar/logoarea";
+@import "sidebar/widgets";
+@import "sidebar/social";
+
+@import "templates/full-width";
+@import "templates/landing-page";
+
+@import "content";
+@import "header";
+@import "home-action";
+@import "mobile-header";
+
+@import "deps/overrides";
+
+@import "dummy-content";

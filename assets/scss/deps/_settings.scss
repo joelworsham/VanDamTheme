@@ -1,0 +1,53 @@
+/*
+ * Theme related settings.
+ *
+ * @since VanDam 0.1
+ */
+
+// Colors
+$primary-color: #da291c;
+$secondary-color: #06038d;
+$dark-color: #333;
+$light-color: #eaeaea;
+$alert-color: #f04124;
+$success-color: #43AC6A;
+$warning-color: #f08a24;
+$info-color: #a0d3e8;
+
+// Grid
+$row-width: 100%;
+$total-columns: 12;
+$column-gutter: 0;
+
+// Off-canvas
+$off-canvas-width: 200px;
+$menu-slide: "transform 300ms ease";
+
+// Gutter
+$gutter: 10px;
+
+// Mobile breakpoint
+$mobile-breakpoint: 750px;
+$wp-breakpoint: 782px;
+
+// Body font
+$body-font-color: $dark-color;
+$body-font-family: 'Source Sans Pro', sans-serif;
+
+//  Font weights
+$font-regular: 400;
+$font-semi-bold: 600;
+$font-bold: 700;
+
+// Buttons
+$button-font-color: $secondary-color;
+$button-font-color-alt: $button-font-color;
+$button-font-weight: $font-bold;
+$button-bg-color: $light-color;
+$button-bg-hover: darken($button-bg-color, 10%);
+
+// Mobile header
+$mobile-header-height: 40px;
+
+// Sidebar
+$border-left-width: 60px;
