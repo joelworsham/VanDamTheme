@@ -1,53 +1,47 @@
 <?php
 global $home_icons;
-$home_icons = array(
-	'hammer'  => array(
-		'title'       => 'Remodeling & Construction',
-		'link' => '/contact',
-	),
-	'fire'        => array(
-		'title'       => 'Fire & Smoke Damage',
-		'link' => '/contact',
-	),
-	'water'       => array(
-		'title'       => 'Water Damage',
-		'link' => '/contact',
-	),
-	'wind'        => array(
-		'title'       => 'Wind & Storm Damage',
-		'link' => '/contact',
-	),
-	'lightening'  => array(
-		'title'       => 'Storm Damage',
-		'link' => '/contact',
-	),
-	'mold'        => array(
-		'title'       => 'Mold Damage',
-		'link' => '/contact',
-	),
-	'information' => array(
-		'title'       => 'More Information',
-		'link' => '#home-content',
-	),
-	'phone'     => array(
-		'title'       => 'Contact Us',
-		'link' => '/contact',
-	),
-)
+$home_icons[] = 'arrow-down';
 ?>
 
-<section id="home-action">
-	<img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/house.jpg'; ?>"/>
+	<section id="home-action" class="hidden">
+		<img class="home-action-image"
+		     src="<?php echo get_stylesheet_directory_uri() . '/assets/images/house.jpg'; ?>"/>
 
-	<?php foreach ( $home_icons as $id => $icon ) : ?>
-		<div class="icon-<?php echo $id; ?>">
-			<a href="<?php echo $icon['link']; ?>">
-				<div class="color-fill">
-					<div class="content">
-						<?php echo $icon['title']; ?>
+		<div class="home-action-icons">
+			<?php
+			foreach ( $home_icons as $id ) :
+
+				$heading = get_option( "vd_icon_{$id}_heading", false ) ? get_option( "vd_icon_{$id}_heading" ) : '';
+				$body    = get_option( "vd_icon_{$id}_body", false ) ? get_option( "vd_icon_{$id}_body" ) : '';
+
+				if ( $id !== 'information' && $id !== 'arrow-down' ) {
+					$link = get_option( "vd_icon_{$id}_link", false ) ? get_option( "vd_icon_{$id}_link" ) : false;
+					$link = $link ? get_permalink( $link ) : '';
+				} else {
+					$link = '#home-content';
+				}
+				?>
+				<a href="<?php echo $link; ?>">
+					<div class="icon-<?php echo $id;
+					echo $id === 'arrow-down' ? ' hidden' : ''; ?>">
+						<div class="color-fill">
+							<div class="content">
+								<h4 class="title">
+									<?php echo $heading ?>
+								</h4>
+
+								<p class="body">
+									<?php echo $body; ?>
+								</p>
+							</div>
+						</div>
 					</div>
-				</div>
-			</a>
+				</a>
+			<?php endforeach; ?>
 		</div>
-	<?php endforeach; ?>
-</section>
+	</section>
+
+<?php
+if ( ( $key = array_search( 'arrow-down', $home_icons ) ) !== false ) {
+	unset( $home_icons[ $key ] );
+}

@@ -32,7 +32,7 @@ body.full-width {
   }
 
   #site-sidebar {
-    @extend .left-off-canvas-menu;
+    @include off-canvas-menu($position: left);
     width: 100%;
     background: none;
 

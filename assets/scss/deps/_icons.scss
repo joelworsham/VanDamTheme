@@ -1,15 +1,15 @@
 @font-face {
   font-family: 'icomoon';
-  src:url('../fonts/icons/icomoon.eot?dpzmux');
-  src:url('../fonts/icons/icomoon.eot?#iefixdpzmux') format('embedded-opentype'),
-  url('../fonts/icons/icomoon.woff?dpzmux') format('woff'),
-  url('../fonts/icons/icomoon.ttf?dpzmux') format('truetype'),
-  url('../fonts/icons/icomoon.svg?dpzmux#icomoon') format('svg');
+  src:url('../fonts/icons/icomoon.eot?-tdgld8');
+  src:url('../fonts/icons/icomoon.eot?#iefix-tdgld8') format('embedded-opentype'),
+  url('../fonts/icons/icomoon.woff?-tdgld8') format('woff'),
+  url('../fonts/icons/icomoon.ttf?-tdgld8') format('truetype'),
+  url('../fonts/icons/icomoon.svg?-tdgld8#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 
-[class^="icon-"], [class*=" icon-"] {
+[class^="icon-"], [class*=" icon-"], .icon {
   font-family: 'icomoon';
   speak: none;
   font-style: normal;
@@ -50,11 +50,20 @@
 .icon-pencil:before {
   content: "\e608";
 }
+.icon-bullhorn:before {
+  content: "\e61b";
+}
 .icon-location:before {
   content: "\e642";
 }
+.icon-quotes-left:before {
+  content: "\e676";
+}
 .icon-menu:before {
   content: "\e6b8";
+}
+.icon-arrow-down:before {
+  content: "\e724";
 }
 .icon-content:before {
   content: "\e754";

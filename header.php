@@ -6,6 +6,7 @@
 		<?php // Basic, needed html stuff ?>
 		<meta charset="<?php bloginfo( 'charset' ); ?>">
 		<meta name="viewport" content="width=device-width">
+
 		<link rel="profile" href="http://gmpg.org/xfn/11">
 		<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
@@ -34,6 +35,5 @@ wp_nav_menu( array(
 ?>
 
 	<section id="site-content" class="off-canvas-wrap" data-offcanvas>
-	<div class="inner-wrap">
 
 <?php get_template_part( 'inc/partials/sidebar/logo-mobile' ); ?>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+	<Document>
+		<name>Locations for VanDam and Krusinga.</name>
+		<atom:link rel="related" href="http://vandam.realbigsites.com" />
+		<Folder>
+			<Placemark>
+				<name><![CDATA[VanDam and Krusinga]]></name>
+				<address><![CDATA[7858 Ravine Rd, Kalamazoo, MI, 49009, United States]]></address>
+				<description><![CDATA[]]></description>
+				<Point>
+					<coordinates>-85.6474234,42.3331247,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name><![CDATA[VanDam and Krusinga]]></name>
+				<address><![CDATA[8225 Pfeiffer Farms Dr SW Ste 300, Byron Center, MI, 49315, United States]]></address>
+				<description><![CDATA[]]></description>
+				<Point>
+					<coordinates>-85.672653,42.815606,0</coordinates>
+				</Point>
+			</Placemark>
+			<Placemark>
+				<name><![CDATA[VanDam and Krusinga]]></name>
+				<address><![CDATA[412 Blue Star Hwy, South Haven, MI, 49090, United States]]></address>
+				<description><![CDATA[]]></description>
+				<Point>
+					<coordinates>-86.2595803,42.4008933,0</coordinates>
+				</Point>
+			</Placemark>
+		</Folder>
+	</Document>
+</kml>

@@ -1,5 +1,11 @@
+/*
+ * The home action area (house and icons).
+ *
+ * @since VanDam 0.1
+ */
+
 $icon-collapsed: 75px;
-$icon-expand-factor: 2;
+$icon-expand-factor: 2.8;
 $icon-transition: 500ms;
 $icon-fire: #CF5D5E;
 $icon-water: #5A5681;
@@ -30,163 +36,226 @@ $icon-expanded: $icon-collapsed * $icon-expand-factor;
 }
 
 #home-action {
-  position: relative;
+  text-align: center;
+  opacity: 1;
+  transition: opacity 500ms;
 
   @include hide-for-mobile;
 
-  img {
-    width: 100%;
+  &.hidden {
+    opacity: 0;
+  }
+
+  .home-action-image {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
     height: auto;
   }
 
-  [class*="icon-"] {
+  .home-action-icons {
     position: absolute;
-    width: $icon-collapsed;
-    height: $icon-collapsed;
-    border-radius: $icon-collapsed / 2;
-    overflow: hidden;
-    background: #fff;
-    padding: 5px;
-    cursor: pointer;
-    box-shadow: 4px 4px 20px rgba(#000, 0.9);
-    transition: all $icon-transition;
-
-    .content {
-      visibility: hidden;
-      opacity: 0;
-      background: #fff;
-      top: 50%;
-      height: 50%;
-      width: 200%;
-      position: absolute;
-      transition: all $icon-transition;
-      text-align: center;
-      padding: 10px 10px 0 10px;
-      z-index: 3;
-      color: $body-font-color;
-      font-family: $body-font-family;
-
-      font-size: 11px;
-      font-weight: normal;
-      text-transform: uppercase;
-    }
-
-    .color-fill {
-      position: absolute;
-      border-radius: $icon-collapsed / 2;
-      width: $icon-collapsed * 0.85;
-      height: $icon-collapsed * 0.85;
-      top: $icon-collapsed * 0.075;
-      left: $icon-collapsed * 0.075;
-      z-index: 1;
-      transition: all $icon-transition;
-
-      // Fix rounded corners and overflow hidden issue in Chrome (bugfix)
-      -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
-    }
-
-    &:before {
-      position: absolute;
-      z-index: 2;
-      top: 50%;
-      left: 50%;
-      transform: translateY(-50%) translateX(-50%);
-      color: #fff;
-      font-size: 43px;
-      transition: all $icon-transition;
-    }
-
-    &:hover {
-      width: $icon-expanded;
-      height: $icon-expanded;
-      border-radius: $icon-expanded / 2;
-
-      // Keep centered when expanding
-      margin-left: - ($icon-collapsed / $icon-expand-factor);
-      margin-top: - ($icon-collapsed / $icon-expand-factor);
-
-      .content {
-        visibility: visible;
-        opacity: 1;
-        width: 100%;
-      }
-
-      .color-fill {
-        border-radius: $icon-expanded / 2;
-        width: $icon-expanded * 0.85;
-        height: $icon-expanded * 0.85;
-        top: $icon-expanded * 0.075;
-        left: $icon-expanded * 0.075;
-      }
-
-      &:before {
-        transform: translateY(-50%);
-        top: 32%;
-        left: $icon-expanded * 0.2;
-      }
-    }
-  }
-
-  // Make icons smaller when screen gets smaller
-  @media screen and (max-width: 900px) {
-    $icon-mobile-collapsed: 50px;
-    $icon-mobile-expanded: $icon-mobile-collapsed * $icon-expand-factor;
+    left: 0;
+    top: 0;
+    display: block;
+    transition: opacity 500ms;
 
     [class*="icon-"] {
-      width: $icon-mobile-collapsed;
-      height: $icon-mobile-collapsed;
-      border-radius: $icon-mobile-collapsed / 2;
-
-      .color-fill {
-        border-radius: $icon-mobile-collapsed / 2;
-        width: $icon-mobile-collapsed * 0.85;
-        height: $icon-mobile-collapsed * 0.85;
-        top: $icon-mobile-collapsed * 0.075;
-        left: $icon-mobile-collapsed * 0.075;
-      }
+      position: absolute;
+      width: $icon-collapsed;
+      height: $icon-collapsed;
+      border-radius: $icon-collapsed / 2;
+      overflow: hidden;
+      background: #fff;
+      padding: 5px;
+      cursor: pointer;
+      text-align: left;
+      box-shadow: 4px 4px 20px rgba(#000, 0.9);
+      transition: all $icon-transition;
 
       .content {
-        padding-top: 3px;
-        font-size: 9px;
+        visibility: hidden;
+        opacity: 0;
+        background: #fff;
+        top: 50%;
+        height: 50%;
+        width: 200%;
+        position: absolute;
+        transition: all $icon-transition;
+        padding: 0 30px 0 30px;
+        z-index: 3;
+        color: $body-font-color;
+        font-family: $body-font-family;
+
+        .title {
+          font-weight: $font-weight-normal;
+          font-size: 13px;
+          line-height: 13px;
+          text-transform: uppercase;
+          margin: 3px 0;
+        }
+
+        .body {
+          font-size: 11px;
+          line-height: 13px;
+          margin: 0;
+        }
+      }
+
+      .color-fill {
+        position: absolute;
+        border-radius: $icon-collapsed / 2;
+        width: $icon-collapsed * 0.85;
+        height: $icon-collapsed * 0.85;
+        top: $icon-collapsed * 0.075;
+        left: $icon-collapsed * 0.075;
+        z-index: 1;
+        transition: all $icon-transition;
+      }
+
+      &:not(.icon-arrow-down) .color-fill {
+        // Fix rounded corners and overflow hidden issue in Chrome (bugfix)
+        -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
       }
 
       &:before {
-        font-size: 24px;
+        position: absolute;
+        z-index: 3;
+        top: 50%;
+        left: 50%;
+        transform: translateY(-50%) translateX(-50%);
+        color: #fff;
+        font-size: 43px;
+        transition: all $icon-transition;
       }
 
-      &:hover {
-        width: $icon-mobile-expanded;
-        height: $icon-mobile-expanded;
-        border-radius: $icon-mobile-expanded / 2;
+      &:not(.icon-arrow-down):hover {
+        width: $icon-expanded;
+        height: $icon-expanded;
+        border-radius: $icon-expanded / 2;
+        box-shadow: 10px 10px 60px rgba(#000, 0.9);
+        z-index: 10;
 
-        // Keep centered when expanding
-        margin-left: - ($icon-mobile-collapsed / $icon-expand-factor);
-        margin-top: - ($icon-mobile-collapsed / $icon-expand-factor);
+        // Keep centered when expanding (minus padding)
+        margin-left: - ($icon-expanded / 4) - 10;
+        margin-top: - ($icon-expanded / 4) - 10;
+
+        .content {
+          visibility: visible;
+          opacity: 1;
+          width: 100%;
+        }
 
         .color-fill {
-          border-radius: $icon-mobile-expanded / 2;
-          width: $icon-mobile-expanded * 0.85;
-          height: $icon-mobile-expanded * 0.85;
-          top: $icon-mobile-expanded * 0.075;
-          left: $icon-mobile-expanded * 0.075;
+          border-radius: $icon-expanded / 2;
+          width: $icon-expanded * 0.85;
+          height: $icon-expanded * 0.85;
+          top: $icon-expanded * 0.075;
+          left: $icon-expanded * 0.075;
         }
 
         &:before {
-          left: $icon-mobile-expanded * 0.2;
+          transform: translateY(-50%);
+          top: 32%;
+          left: $icon-expanded * 0.2;
         }
       }
     }
-  }
 
-  // Individual icons
-  @include icon('fire', 22%, 37%, $icon-fire);
-  @include icon('water', 64%, 66%, $icon-water);
-  @include icon('wind', 20%, 14%, $icon-wind);
-  @include icon('lightening', 10%, 55%, $icon-lightening);
-  @include icon('hammer', 49%, 44%, $icon-hammer);
-  @include icon('mold', 46%, 81%, $icon-mold);
-  @include icon('information', 71%, 16%, $icon-information);
-  @include icon('phone', 88%, 39%, $icon-phone);
+    // More below icon
+    .icon-arrow-down {
+      position: fixed;
+      right: 40px;
+      bottom: 20px;
+      opacity: 0.6;
+
+      @include hide-for-mobile;
+
+      .color-fill {
+        background: #888;
+      }
+
+      &.hidden {
+        visibility: hidden;
+        opacity: 0;
+      }
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+
+    // Make icons smaller when screen gets smaller
+    @media screen and (max-width: 900px) {
+      $icon-mobile-collapsed: 50px;
+      $icon-mobile-expanded: $icon-mobile-collapsed * ($icon-expand-factor * 1.2);
+
+      [class*="icon-"] {
+        width: $icon-mobile-collapsed !important;
+        height: $icon-mobile-collapsed !important;
+        border-radius: $icon-mobile-collapsed / 2 !important;
+
+        .color-fill {
+          border-radius: $icon-mobile-collapsed / 2 !important;
+          width: $icon-mobile-collapsed * 0.85 !important;
+          height: $icon-mobile-collapsed * 0.85 !important;
+          top: $icon-mobile-collapsed * 0.075 !important;
+          left: $icon-mobile-collapsed * 0.075 !important;
+        }
+
+        .content {
+          padding: 0 20px 0 20px !important;
+
+          .title {
+            font-size: 9px !important;
+            line-height: 10px !important;
+            margin: 1px 0 !important;
+          }
+
+          .body {
+            font-size: 8px !important;
+            line-height: 9px !important;
+          }
+        }
+
+        &:before {
+          font-size: 24px !important;
+        }
+
+        &:hover {
+          width: $icon-mobile-expanded !important;
+          height: $icon-mobile-expanded !important;
+          border-radius: $icon-mobile-expanded / 2 !important;
+
+          // Keep centered when expanding (minus padding)
+          margin-left: - ($icon-mobile-expanded / 4) - 10 !important;
+          margin-top: - ($icon-mobile-expanded / 4) - 10 !important;
+
+          .color-fill {
+            border-radius: $icon-mobile-expanded / 2 !important;
+            width: $icon-mobile-expanded * 0.85 !important;
+            height: $icon-mobile-expanded * 0.85 !important;
+            top: $icon-mobile-expanded * 0.075 !important;
+            left: $icon-mobile-expanded * 0.075 !important;
+          }
+
+          &:before {
+            left: $icon-mobile-expanded * 0.2 !important;
+          }
+        }
+      }
+    }
+
+    // Individual icons
+    @include icon('fire', 22%, 37%, $icon-fire);
+    @include icon('water', 64%, 66%, $icon-water);
+    @include icon('wind', 20%, 14%, $icon-wind);
+    @include icon('lightening', 10%, 55%, $icon-lightening);
+    @include icon('hammer', 49%, 44%, $icon-hammer);
+    @include icon('mold', 46%, 81%, $icon-mold);
+    @include icon('information', 71%, 16%, $icon-information);
+    @include icon('phone', 80%, 39%, $icon-phone);
+  }
 }
 
 // MOBILE
@@ -200,7 +269,6 @@ $icon-expanded: $icon-collapsed * $icon-expand-factor;
     font-style: italic;
   }
 
-  // TODO Remove
   .tagline, .locations {
     margin: 0 !important;
   }
@@ -208,7 +276,6 @@ $icon-expanded: $icon-collapsed * $icon-expand-factor;
   .button-alt {
     width: 100%;
 
-    // TODO Remove
     background: transparent;
     color: $body-font-color;
 
@@ -240,6 +307,15 @@ $icon-expanded: $icon-collapsed * $icon-expand-factor;
       float: left;
       width: 25%;
       padding: 5px;
+
+      // Make them all flush with the bottom at this width
+      @media screen and (min-width: 550px) {
+        width: 12.5%;
+
+        [class*="icon-"] {
+          font-size: 30px;
+        }
+      }
     }
 
     .container {

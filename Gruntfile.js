@@ -6,77 +6,129 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
 
-        // watch for changes and trigger compass, jshint, uglify and livereload
+        pkg: grunt.file.readJSON('package.json'),
+
+        // Define watch tasks
         watch: {
             options: {
                 livereload: true
             },
             sass: {
-                files: ['assets/scss/**/*.scss'],
-                tasks: ['sass', 'autoprefixer']
+                files: ['assets/scss/**/*.scss', '!assets/scss/admin/**/*.scss'],
+                tasks: ['sass:front', 'autoprefixer:front', 'notify:sass']
+            },
+            sass_admin: {
+                files: ['assets/scss/admin/**/*.scss'],
+                tasks: ['sass:admin', 'autoprefixer:admin', 'notify:sass_admin']
             },
             js: {
-                files: ['assets/js/source/*.js'],
-                tasks: ['uglify:dist']
+                files: ['assets/js/*.js'],
+                tasks: ['uglify:front', 'notify:js']
             },
-            jsdeps: {
-                files: ['assets/js/source/deps/*.js'],
-                tasks: ['uglify:deps']
+            js_admin: {
+                files: ['assets/js/admin/*.js'],
+                tasks: ['uglify:admin', 'notify:js_admin']
             },
             livereload: {
-                files: ['**/*.html', '**/*.php', 'assets/images/**/*.{png,jpg,jpeg,gif,webp,svg}']
+                files: ['**/*.html', '**/*.php', 'assets/images/**/*.{png,jpg,jpeg,gif,webp,svg}', '!**/*ajax*.php']
             }
         },
 
-        // compass and scss
+        // SASS
         sass: {
-            dist: {
-                options: {
-                    outputStyle: 'expanded',
-                    imagePath: 'assets/images'
-                },
+            options: {
+                sourceMap: true,
+                outputStyle: 'compressed'
+            },
+            front: {
                 files: {
-                    'assets/css/frontend.main.min.css': 'assets/scss/frontend.main.scss'
+                    'assets/css/vandam.min.css': 'assets/scss/main.scss'
+                }
+            },
+            admin: {
+                files: {
+                    'assets/css/vandam-admin.min.css': 'assets/scss/admin/admin.scss'
                 }
             }
         },
 
+        // Auto prefix our CSS with vendor prefixes
         autoprefixer: {
-            dist: {
-                expand: true,
-                flatten: true,
-                src: 'assets/css/**/*.css',
-                dest: 'assets/css/',
-                options: {
-                    browsers: ['last 2 version', 'ie 8', 'ie 9']
-                }
+            options: {
+                map: true
+            },
+            front: {
+                src: 'style.css'
+            },
+            admin: {
+                src: 'admin.css'
             }
         },
 
-        // uglify to concat, minify, and make source maps
+        // Uglify and concatenate
         uglify: {
-            dist: {
+            options: {
+                sourceMap: true
+            },
+            front: {
                 files: {
-                    'assets/js/frontend.main.min.js': [
-                        'assets/js/source/*.js'
+                    'script.js': [
+                        // Vendor files
+                        'assets/vendor/js/modernizr.js',
+                        'assets/vendor/js/fastclick.js',
+                        'assets/vendor/js/placeholder.js',
+                        'assets/vendor/js/jquery.cookie.js',
+                        'assets/vendor/js/jquery.shuffle.min.js',
+                        'assets/vendor/js/foundation/foundation.js',
+                        'assets/vendor/js/foundation/foundation.accordion.js',
+                        'assets/vendor/js/foundation/foundation.equalizer.js',
+
+                        // Included dynamically in header.php
+                        '!assets/vendor/js/html5.js',
+
+                        // Theme scripts
+                        'assets/js/*.js'
                     ]
                 }
             },
-            deps: {
+            admin: {
                 files: {
-                    'assets/js/frontend.deps.min.js': [
-                        'assets/js/source/deps/fastclick.js',
-                        'assets/js/source/deps/jquery.cookie.js',
-                        'assets/js/source/deps/placeholder.js',
-                        'assets/js/source/deps/foundation.min.js'
+                    'admin.js': [
+                        'assets/js/admin/*.js'
                     ]
+                }
+            }
+        },
+
+        notify: {
+            js: {
+                options: {
+                    title: '<%= pkg.name %>',
+                    message: 'JS Complete'
+                }
+            },
+            js_admin: {
+                options: {
+                    title: '<%= pkg.name %>',
+                    message: 'JS Admin Complete'
+                }
+            },
+            sass: {
+                options: {
+                    title: '<%= pkg.name %>',
+                    message: 'SASS Complete'
+                }
+            },
+            sass_admin: {
+                options: {
+                    title: '<%= pkg.name %>',
+                    message: 'SASS Admin Complete'
                 }
             }
         }
 
     });
 
-    // register task
+    // Register our main task
     grunt.registerTask('Watch', ['watch']);
-
 };

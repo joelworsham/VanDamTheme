@@ -15,7 +15,9 @@
 @import "deps/foundation/components/grid";
 @import "deps/foundation/components/forms";
 @import "deps/foundation/components/buttons";
+@import "deps/foundation/components/alert-boxes";
 @import "deps/foundation/components/offcanvas";
+@import "deps/foundation/components/visibility";
 
 // Theme files
 @import "classes";
@@ -26,17 +28,20 @@
 
 @import "sidebar/sidebar";
 @import "sidebar/logoarea";
-@import "sidebar/widgets";
 @import "sidebar/social";
+@import "sidebar/content-sidebar";
 
 @import "templates/full-width";
 @import "templates/landing-page";
+@import "templates/contact";
+@import "templates/service";
 
 @import "content";
 @import "header";
-@import "home-action";
 @import "mobile-header";
+@import "home-action";
+@import "footer";
+@import "image-captions";
+@import "soliloquy";
 
 @import "deps/overrides";
-
-@import "dummy-content";

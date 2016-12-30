@@ -6,7 +6,7 @@
 
 // Colors
 $primary-color: #da291c;
-$secondary-color: #06038d;
+$secondary-color: #1b429a;
 $dark-color: #333;
 $light-color: #eaeaea;
 $alert-color: #f04124;
@@ -26,7 +26,7 @@ $menu-slide: "transform 300ms ease";
 // Gutter
 $gutter: 10px;
 
-// Mobile breakpoint
+// Breakpoints
 $mobile-breakpoint: 750px;
 $wp-breakpoint: 782px;
 
@@ -34,7 +34,7 @@ $wp-breakpoint: 782px;
 $body-font-color: $dark-color;
 $body-font-family: 'Source Sans Pro', sans-serif;
 
-//  Font weights
+// Font weights
 $font-regular: 400;
 $font-semi-bold: 600;
 $font-bold: 700;
@@ -51,3 +51,6 @@ $mobile-header-height: 40px;
 
 // Sidebar
 $border-left-width: 60px;
+$border-width: 305px + $border-left-width;
+$border-large-width: 550px + $border-left-width;
+$flyout-nav-width: 250px;

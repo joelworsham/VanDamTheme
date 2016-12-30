@@ -16,6 +16,14 @@
   }
 }
 
+@mixin clearfix {
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
 body {
   font-family: $body-font-family;
   line-height: normal;
@@ -31,7 +39,7 @@ a {
 
 // Links in the body
 .body-content {
-  a {
+  a:not(.button) {
     text-decoration: underline;
   }
 }
@@ -40,11 +48,23 @@ h1 {
   color: $secondary-color;
   font-size: 220%;
   font-weight: $font-bold;
+
+  @media screen and (max-width: $mobile-breakpoint) {
+    font-size: 180%;
+    line-height: 1em;
+  }
 }
 
 h2, h3, h3, h4, h5, h6 {
-  font-size: 150%;
   font-weight: $font-semi-bold;
+}
+
+h2 {
+  font-size: 150%;
+}
+
+h3, h3, h4, h5, h6{
+  font-size: 120%;
 }
 
 // Make sure the fly-out stretches all the way
@@ -70,4 +90,14 @@ input[type="submit"], .button-alt {
     background: lighten($secondary-color, 10%);
     color: #fff;
   }
+}
+
+// Select color
+::selection {
+  background: $primary-color;
+  color: #fff;
+}
+::-moz-selection {
+  background: $primary-color;
+  color: #fff;
 }

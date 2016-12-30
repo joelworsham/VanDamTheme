@@ -34,7 +34,10 @@ class VanDam {
 	 */
 	public $necessities = array(
 		'scripts',
-		'shortcodes'
+		'shortcodes',
+		'home-icons',
+		'admin/admin',
+		'testimonials',
 	);
 
 	/**
@@ -47,34 +50,58 @@ class VanDam {
 			'css' => array(
 				'all' => array(
 					array(
-						'handle'   => 'frontend-main',
-						'filename' => 'frontend.main.min'
+						'handle'   => 'vandam',
+						'filename' => 'vandam.min'
+					)
+				),
+			),
+			'js'  => array(
+				'all'    => array(
+					array(
+						'handle'   => 'vandam',
+						'filename' => 'vandam.min',
+						'deps'     => array( 'jquery', 'vandam-deps' ),
+						'footer'   => true
+					),
+					array(
+						'handle'   => 'vandam-deps',
+						'filename' => 'vandam-deps.min',
+						'footer'   => true
+					),
+					array(
+						'handle'   => 'googlemaps',
+						'external' => 'http://maps.google.com/maps/api/js?sensor=false',
+						'deps'     => array( 'jquery' ),
+					),
+					array(
+						'handle'   => 'vandam-googlemaps',
+						'filename' => 'vandam-google.min',
+						'deps'     => array( 'googlemaps' ),
+						'footer'   => true,
+					)
+				),
+				'mobile' => array()
+			)
+		),
+		'backend'  => array(
+			'css' => array(
+				'all' => array(
+					array(
+						'handle'   => 'vandam-admin',
+						'filename' => 'vandam-admin.min',
 					)
 				),
 			),
 			'js'  => array(
 				'all' => array(
 					array(
-						'handle'   => 'frontend-main',
-						'filename' => 'frontend.main.min',
-						'deps'     => array( 'jquery', 'frontend-deps' ),
-						'footer'   => true
-					),
-					array(
-						'handle'   => 'frontend-deps',
-						'filename' => 'frontend.deps.min',
-						null,
-						'footer'   => true
+						'handle'   => 'vandam-admin',
+						'filename' => 'vandam-admin.min',
+						'deps'     => array( 'jquery' ),
+						'footer'   => true,
 					)
 				),
-				'mobile' => array(
-
-				)
-			)
-		),
-		'backend'  => array(
-			'css' => array(),
-			'js'  => array()
+			),
 		),
 	);
 
@@ -97,12 +124,17 @@ class VanDam {
 	 */
 	public $sidebars = array(
 		array(
-			'name' => 'Main Sidebar',
-			'id' => 'main-sidebar',
-			'description' => 'Widgets here will show on the left, under the menu icon.',
-			'before_title' => '<h3 class="widget-title">',
-			'after_title' => '</h3>'
-		)
+			'name'        => 'Content Sidebar',
+			'id'          => 'content-sidebar',
+			'description' => 'Widgets here will show on the right of the content.',
+		),
+		array(
+			'name'          => 'Footer',
+			'id'            => 'footer',
+			'description'   => 'The site footer.',
+			'before_widget' => '',
+			'after_widget'  => '',
+		),
 	);
 
 	/**
@@ -112,6 +144,8 @@ class VanDam {
 	 */
 	public $excerpt_length = 100;
 
+	public static $path;
+
 	/**
 	 * The main construct function.
 	 *
@@ -120,6 +154,7 @@ class VanDam {
 	function __construct() {
 
 		$this->require_necessities();
+		self::$path = plugin_dir_path( __FILE__ );
 
 		add_filter( 'body_class', array( $this, 'body_classes' ) );
 
@@ -131,11 +166,79 @@ class VanDam {
 
 		add_action( 'wp_head', array( $this, 'remove_html_margin' ), 1 );
 
+		add_action( 'wp_head', array( $this, 'favicon' ) );
+
+		add_filter( 'vandam_enqueue_file', array( $this, 'googlemaps' ), 10, 2 );
+
+		add_filter( 'img_caption_shortcode', array( $this, 'modify_image_captions' ), 10, 3 );
+
 		add_theme_support( 'post-thumbnails' );
+		add_theme_support( 'html5' );
+	}
+
+	public function modify_image_captions( $null, $attr, $content ) {
+
+		$atts = shortcode_atts( array(
+			'id'	  => '',
+			'align'	  => 'alignnone',
+			'width'	  => '',
+			'caption' => '',
+			'class'   => '',
+		), $attr, 'caption' );
+
+		$atts['width'] = (int) $atts['width'];
+
+		if ( $atts['width'] < 1 || empty( $atts['caption'] ) )
+			return $content;
+
+		if ( ! empty( $atts['id'] ) )
+			$atts['id'] = 'id="' . esc_attr( $atts['id'] ) . '" ';
+
+		$class = trim( 'wp-caption ' . $atts['align'] . ' ' . $atts['class'] );
+
+		$caption_width = 10 + $atts['width'];
+
+		$style = '';
+		if ( $caption_width )
+			$style = 'style="width: ' . (int) $caption_width . 'px" ';
+
+		preg_match( '/title="(.*?)"/i', $content, $title );
+
+		$html = '';
+		$html .= "<div $atts[id] $style class='" . esc_attr( $class ) . "'>";
+		$html .= do_shortcode( $content );
+		$html .= '<div class="wp-caption-content">';
+		$html .= '<div class="wp-caption-button icon-information"></div>';
+		$html .= '<div class="wp-caption-text">';
+		$html .= ! empty( $title ) ? "<h4>$title[1]</h4>" : '';
+		$html .= "<p>$atts[caption]</p>";
+		$html .= '</div>';
+		$html .= '</div>';
+		$html .= '</div>';
+
+		return $html;
+	}
+
+	public function googlemaps( $use, $file ) {
+
+		global $post;
+
+		if ( strpos( $file['handle'], 'googlemaps' ) !== false &&
+		     get_post_meta( $post->ID, '_wp_page_template', true ) !== 'templates/contact.php'
+		) {
+			return false;
+		}
+
+		return true;
 	}
 
 	public function remove_html_margin() {
 		remove_action( 'wp_head', '_admin_bar_bump_cb' );
+	}
+
+	public function favicon() {
+		echo '<link rel="apple-touch-icon" href="' . get_stylesheet_directory_uri() . '/assets/images/apple-touch-icon.png">';
+		echo '<link rel="icon" type="image/png" href="' . get_stylesheet_directory_uri() . '/assets/images/favicon.ico" />';
 	}
 
 	/**

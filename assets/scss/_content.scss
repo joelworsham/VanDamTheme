@@ -9,10 +9,12 @@
   height: 100%;
   overflow-y: scroll;
   position: relative;
+  background: #fff;
+  transition: transform 500ms;
   z-index: 2;
 
-  > .inner-wrap {
-    background: #fff;
+  &.move-right {
+    transform: translate3d($flyout-nav-width, 0, 0);
   }
 
   @media screen and (min-width: $mobile-breakpoint) {
@@ -20,17 +22,30 @@
     margin: 0;
     padding: 0;
   }
-}
 
-// Landing pages are full width
-#wrapper.full-width {
-  #site-content {
-    width: 100%;
+  .page-title {
+    line-height: 20px;
+    margin-bottom: 20px;
   }
-}
 
-.body-content {
-  padding: 0 $gutter;
+  .body-content {
+    padding: 40px;
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+
+    ul {
+      list-style: disc;
+      padding-left: 40px;
+    }
+
+    @include clearfix;
+  }
+
+  .gform_fields {
+    padding-left: 0 !important;
+  }
 }
 
 // For mobile, make the entire screen shift (only when mobile)
@@ -46,4 +61,10 @@
 
 .post-edit-link {
   text-decoration: none !important;
+}
+
+.body-content.full-width {
+  .page-content {
+    width: 100% !important;
+  }
 }

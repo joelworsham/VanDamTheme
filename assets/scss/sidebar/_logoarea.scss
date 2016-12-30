@@ -7,12 +7,21 @@
 #site-logo {
   @include hide-for-mobile;
 
-  padding: $gutter;
+  margin-bottom: $gutter;
   text-align: center;
 }
 
 // Mobile logo area (in content)
 #site-logo-mobile {
+  h1 {
+    text-align: center;
+
+    img {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+
   @media screen and (min-width: $mobile-breakpoint) {
     display: none;
   }

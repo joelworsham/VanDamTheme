@@ -1,5 +1,9 @@
 <?php get_header(); ?>
 
-<?php get_template_part( 'inc/loops/loop', 'page' ); ?>
+	<div class="body-content row">
+
+		<?php get_template_part( 'inc/loops/page' ); ?>
+
+	</div>
 
 <?php get_footer(); ?>

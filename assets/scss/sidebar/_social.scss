@@ -9,8 +9,15 @@ $social-icon-color: #999;
 #site-social {
   list-style: none;
   text-align: center;
-  margin: 10px 0 0 0;
   padding: 0;
+  margin: 0;
+  position: absolute;
+  bottom: 0;
+  left: $border-left-width;
+  width: $border-width - $border-left-width;
+
+  // .secondary-logo: 2, #site-nav: 3
+  z-index: 3;
 
   @include hide-for-mobile;
 
@@ -18,7 +25,7 @@ $social-icon-color: #999;
   [class^="social"] {
     display: inline-block;
     text-align: center;
-    font-size: 35px;
+    font-size: 25px;
     margin: 0 10px;
 
     a {

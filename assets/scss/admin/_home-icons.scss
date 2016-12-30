@@ -1,0 +1,45 @@
+.vd-admin-icons {
+  margin: 0 -10px;
+}
+
+.vd-admin-icon {
+  float: left;
+  padding: 10px;
+  width: 20%;
+  box-sizing: border-box;
+  text-align: center;
+
+  @media screen and (max-width: 500px) {
+    width: 33.3333%;
+  }
+
+  * {
+    max-width: 100% !important;
+  }
+
+  .container {
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+    background: #fff;
+    padding: 10px;
+  }
+
+  textarea {
+    min-height: 100px;
+  }
+
+  em {
+    color: #777;
+  }
+
+  .label {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+
+  [class*="icon-"] {
+    font-size: 50px;
+    margin: 10px 0;
+    display: inline-block;
+  }
+}

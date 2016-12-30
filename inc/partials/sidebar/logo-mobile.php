@@ -2,12 +2,12 @@
 	<div class="columns large-12">
 		<?php
 		if ( ! is_front_page() ) {
-			echo '<a href="' . site_url() . '">';
+			echo '<a href="' . home_Url() . '">';
 		}
 		?>
-			<h1><img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/logo.png'; ?>" /></h1>
+			<img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/logo.png'; ?>" alt="vandam and krusinga" />
 		<?php
-		if ( ! is_home() ) {
+		if ( ! is_front_page() ) {
 			echo '</a>';
 		}
 		?>

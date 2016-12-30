@@ -1,0 +1,41 @@
+.body-content.contact {
+
+  // First layer of the grid
+  > .row {
+    > .columns {
+      padding: 0 10px;
+    }
+  }
+
+  #contact-locations {
+    width: auto;
+    max-width: none;
+    float: none;
+    margin: 0 -20px;
+
+    .columns {
+      padding: 20px;
+
+      .container {
+        background: $light-color;
+        border-left: 5px solid $primary-color;
+        padding: 10px;
+        text-align: center;
+
+        p {
+          margin: 5px 0;
+        }
+
+        .phone {
+          font-size: 130%;
+          color: $primary-color;
+          font-weight: bold;
+        }
+
+        .fax {
+          font-size: 80%;
+        }
+      }
+    }
+  }
+}

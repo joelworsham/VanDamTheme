@@ -10,17 +10,19 @@
   background: #777;
   color: #fff;
   padding: $gutter;
-  box-sizing: inherit;
   font-weight: $font-weight-normal;
   display: none;
+  list-style: none;
 
-  left: 300px + $border-left-width;
+  left: $border-width;
   height: 100%;
   top: auto;
   bottom: auto;
-  width: 200px;
-  z-index:1;
+  width: $flyout-nav-width;
+  z-index: 2;
   transform: none;
+
+  box-sizing: border-box;
 
   &.active {
     display: block;
@@ -30,6 +32,10 @@
     &:hover {
       color: darken(#fff, 10%);
     }
+  }
+
+  li {
+    margin: 20px 0;
   }
 
   * {

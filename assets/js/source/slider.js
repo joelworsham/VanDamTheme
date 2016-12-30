@@ -1,12 +1,7 @@
 /**
- * VD_Slider
- *
  * Controls the slider functionality for the homepage.
  *
  * @since VanDam 0.1
- *
- * @package WordPress
- * @subpackage VanDam
  */
 var VD_Slider;
 (function ($) {

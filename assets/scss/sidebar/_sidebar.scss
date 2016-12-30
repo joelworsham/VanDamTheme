@@ -7,29 +7,46 @@
 #site-sidebar {
   padding-left: $border-left-width;
   background: $light-color;
-  width: 100%;
+  overflow: hidden;
+  top: auto;
+  bottom: auto;
+  left: auto;
+  position: static;
+  float: left;
+  height: 100%;
+  width: $border-width;
+  padding-top: 0;
+  box-sizing: border-box;
+  transform: translate3d(0,0,0);
 
+  // Mobile
   @media screen and (max-width: $mobile-breakpoint) {
-    padding-top: $mobile-header-height;
+    width: 100%;
+    position: absolute;
+    box-sizing: content-box;
+    overflow: auto;
+    transform: translate3d(-100.5%,0,0);
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .tagline {
+    font-weight: bold;
+    text-align: center;
+    margin: $gutter;
+
+    @include hide-for-mobile;
   }
 
   .secondary-logo {
-    position: fixed;
+    position: absolute;
     text-align: center;
     left: 0;
     bottom: 0;
+    opacity: 0.1;
     z-index: 2;
-
-    .tagline {
-      position: absolute;
-      left: $border-left-width;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      font-weight: bold;
-
-      @include hide-for-mobile;
-    }
   }
 
   .left-border {
@@ -40,20 +57,5 @@
     bottom: 0;
     background: $primary-color;
     z-index: 1;
-  }
-
-  // Disable mobile on large screens
-  @media screen and (min-width: $mobile-breakpoint) {
-    width: 300px + $border-left-width;
-    height: 100%;
-    overflow-y: scroll;
-    top: auto;
-    bottom: auto;
-    left: auto;
-    position: static;
-    z-index: auto;
-    box-sizing: border-box;
-    transform: translate3d(0,0,0);
-    float: left;
   }
 }

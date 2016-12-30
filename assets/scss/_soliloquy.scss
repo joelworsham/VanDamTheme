@@ -1,0 +1,13 @@
+.soliloquy-container {
+  &.alignleft {
+    @extend .alignleft;
+  }
+
+  &.alignright {
+    @extend .alignright;
+  }
+}
+
+.soliloquy-slider {
+  padding: 0 !important;
+}

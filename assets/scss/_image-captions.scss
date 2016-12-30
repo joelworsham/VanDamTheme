@@ -1,0 +1,70 @@
+$icon-size: 40px;
+$shadow: 3px 3px 5px rgba(#000, 0.5);
+
+.wp-caption {
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    .wp-caption-content {
+      transform: translateX(0%);
+    }
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .wp-caption-content {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    max-width: 50%;
+    transform: translateX(101%);
+    transition: transform 300ms;
+
+    .wp-caption-text {
+      position: relative;
+      background: #fff;
+      padding: 15px;
+      box-shadow: $shadow;
+      min-height: $icon-size;
+      z-index: 2;
+
+      h4 {
+        font-size: 13px;
+        margin: 0 0 4px 0;
+      }
+
+      p {
+        font-size: 11px;
+        line-height: normal;
+        margin: 0;
+      }
+    }
+
+    .wp-caption-button {
+      position: absolute;
+      left: 0;
+      top: 0;
+      transform: translateX(-100%);
+      padding: 3px;
+      background: #fff;
+      border-top-left-radius: 50%;
+      border-bottom-left-radius: 50%;
+      box-shadow: $shadow;
+      z-index: 1;
+
+      &:before {
+        background: $icon-information;
+        display: inline-block;
+        width: $icon-size;
+        line-height: $icon-size;
+        text-align: center;
+        border-radius: $icon-size / 2;
+        color: #fff;
+        font-size: 25px;
+      }
+    }
+  }
+}

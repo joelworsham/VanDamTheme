@@ -11,16 +11,22 @@
 
 .alignleft {
   float: left;
-  margin-right: 10px;
+  margin-right: 40px;
+  margin-bottom: 15px !important;
 }
 
 .alignright {
   float: right;
-  margin-left: 10px;
+  margin-left: 40px;
+  margin-bottom: 15px !important;
 }
 
 .aligncenter {
   margin: 0 auto;
+}
+
+.full-width {
+  width: 100%;
 }
 
 .post-edit-link {

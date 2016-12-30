@@ -1,5 +1,4 @@
 <?php
-
 $socials = array(
 	array(
 		'link'  => 'http://www.facebook.com/pages/VanDam-Krusinga-Building-Restoration/107367515977661',

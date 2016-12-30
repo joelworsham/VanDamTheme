@@ -31,24 +31,32 @@ class VanDam_Scripts extends VanDam {
 	 */
 	public function register_files() {
 
-		foreach ( $this->files['frontend'] as $type => $contexts ) {
-			foreach ( $contexts as $context => $files ) {
-				foreach ( $files as $file ) {
-					if ( $type == 'css' ) {
-						wp_register_style(
-							$file['handle'],
-							get_template_directory_uri() . '/assets/css/' . ( isset( $file['filename'] ) ? $file['filename'] : $file['handle'] ) . '.css',
-							isset( $file['deps'] ) ? $file['deps'] : null,
-							isset( $file['version'] ) ? $file['version'] : $this->version
-						);
-					} elseif ( $type == 'js' ) {
-						wp_register_script(
-							$file['handle'],
-							get_template_directory_uri() . '/assets/js/' . ( isset( $file['filename'] ) ? $file['filename'] : $file['handle'] ) . '.js',
-							isset( $file['deps'] ) ? $file['deps'] : null,
-							isset( $file['version'] ) ? $file['version'] : $this->version,
-							isset( $file['footer'] ) ? $file['footer'] : false
-						);
+		foreach ( $this->files as $frontorback ) {
+			foreach ( $frontorback as $type => $contexts ) {
+				foreach ( $contexts as $context => $files ) {
+					foreach ( $files as $file ) {
+						if ( $type == 'css' ) {
+
+							$source = isset( $file['external'] ) ? $file['external'] : get_template_directory_uri() .'/assets/css/' . ( isset( $file['filename'] ) ? $file['filename'] : $file['handle'] ) . '.css';
+
+							wp_register_style(
+								$file['handle'],
+								$source,
+								isset( $file['deps'] ) ? $file['deps'] : null,
+								isset( $file['version'] ) ? $file['version'] : $this->version
+							);
+						} elseif ( $type == 'js' ) {
+
+							$source = isset( $file['external'] ) ? $file['external'] : get_template_directory_uri() . '/assets/js/' . ( isset( $file['filename'] ) ? $file['filename'] : $file['handle'] ) . '.js';
+
+							wp_register_script(
+								$file['handle'],
+								$source,
+								isset( $file['deps'] ) ? $file['deps'] : null,
+								isset( $file['version'] ) ? $file['version'] : $this->version,
+								isset( $file['footer'] ) ? $file['footer'] : false
+							);
+						}
 					}
 				}
 			}
@@ -66,10 +74,14 @@ class VanDam_Scripts extends VanDam {
 			foreach ( $contexts as $context => $files ) {
 				foreach ( $files as $file ) {
 					if ( $context == 'mobile' && wp_is_mobile() || $context == 'all' ) {
-						if ( $type == 'css' || $type == 'font' ) {
-							wp_enqueue_style( $file['handle'] );
-						} else {
-							wp_enqueue_script( $file['handle'] );
+
+						if ( apply_filters( 'vandam_enqueue_file', true, $file ) ) {
+
+							if ( $type == 'css' || $type == 'font' ) {
+								wp_enqueue_style( $file['handle'] );
+							} else {
+								wp_enqueue_script( $file['handle'] );
+							}
 						}
 					}
 				}
@@ -93,13 +105,15 @@ class VanDam_Scripts extends VanDam {
 	 */
 	public function enqueue_backend_files() {
 
-		foreach ( $this->files['backend'] as $types ) {
-			foreach ( $types as $type => $files ) {
+		foreach ( $this->files['backend'] as $type => $contexts ) {
+			foreach ( $contexts as $context => $files ) {
 				foreach ( $files as $file ) {
-					if ( $type == 'css' ) {
-						wp_enqueue_style( $file['handle'] );
-					} else {
-						wp_enqueue_script( $file['handle'] );
+					if ( $context == 'mobile' && wp_is_mobile() || $context == 'all' ) {
+						if ( $type == 'css' || $type == 'font' ) {
+							wp_enqueue_style( $file['handle'] );
+						} else {
+							wp_enqueue_script( $file['handle'] );
+						}
 					}
 				}
 			}

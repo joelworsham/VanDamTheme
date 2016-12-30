@@ -1,0 +1,25 @@
+.vandam-contact-inputs {
+
+  h3 {
+    text-align: center;
+    font-size: 20px !important;
+  }
+
+  label {
+    float: left;
+    text-align: center;
+    padding: 0 10px;
+    font-weight: bold;
+    width: 33.3333%;
+    box-sizing: border-box;
+
+    input, textarea {
+      font-weight: normal;
+      width: 100%;
+    }
+
+    input {
+      text-align: center;
+    }
+  }
+}

@@ -5,16 +5,17 @@
 
 	<?php get_template_part( 'inc/partials/sidebar/logo' ); ?>
 
+	<p class="tagline">
+		<?php echo get_bloginfo( 'description' ); ?><br/>
+		<span class="phone">1.800.493.8673</span>
+	</p>
+
 	<?php get_template_part( 'inc/partials/sidebar/nav' ); ?>
 
-	<?php get_template_part( 'inc/partials/sidebar/social' ); ?>
-
 	<div class="secondary-logo">
-		<img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/vk.png'; ?>" />
-		<span class="tagline">
-			<?php echo get_bloginfo( 'description' ); ?><br/>
-			<span class="phone">1.800.493.8673</span>
-		</span>
+		<img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/vk.png'; ?>" alt="Flood Damage Restoration, Grand Rapids, MI, Logo Image - VanDam & Krusinga Building And Restoration"title="Flood Damage Restoration, Grand Rapids, MI, Logo Image" />
 	</div>
+
+	<?php get_template_part( 'inc/partials/sidebar/social' ); ?>
 
 </aside>

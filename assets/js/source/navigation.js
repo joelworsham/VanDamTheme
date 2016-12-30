@@ -1,12 +1,7 @@
 /**
- * VD_Nav
- *
  * Controls the crazy, quirky nav fly-outs on the page.
  *
  * @since VanDam 0.1
- *
- * @package WordPress
- * @subpackage VanDam
  */
 var VD_Nav;
 (function ($) {
@@ -28,6 +23,7 @@ var VD_Nav;
          * @since VanDam 0.1
          */
         flyouts: function () {
+
             $('#site-nav').find('.menu-item-has-children').click(function () {
                 var e = $(this),
                     child_ID = e.attr('id').match(/\d+/),
@@ -67,7 +63,7 @@ var VD_Nav;
                         $('.flyout.active').removeClass('active');
                         e_menu.addClass('active');
 
-                    }, 300); // The timeout should match the transition for $menu-slide in SCSS settings
+                    }, 500); // The timeout should match the transition for $menu-slide in SCSS settings
                 } else {
                     e_content.addClass('move-right');
 
@@ -78,6 +74,7 @@ var VD_Nav;
                 }
             });
         },
+
         /**
          * Moves the entire screen back and forth.
          *
@@ -103,6 +100,7 @@ var VD_Nav;
                 return false;
             });
         },
+
         /**
          * Toggles the sub-menus under each menu-icon when mobile.
          *
@@ -113,6 +111,7 @@ var VD_Nav;
                 $(this).closest('.menu-item-has-children').find('.sub-menu').toggleClass('active');
             });
         },
+
         /**
          * Initializes open submenus.
          *
