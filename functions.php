@@ -17,7 +17,7 @@ class VanDam {
 	 *
 	 * @since VanDam 0.1
 	 */
-	public $version = '0.1.1';
+	public $version = '1.0.0';
 
 	/**
 	 * Classes to go into the wrapper div.
