@@ -151,7 +151,7 @@ var VD;
                     h_logo = $('#site-logo-mobile').outerHeight(true),
                     h_action = elements.mobile_home_action.outerHeight(true) - parseInt(elements.mobile_home_action_icon_container.css('margin-top')),
                     h_mobileheader = $('#mobile-header').outerHeight(true),
-                    padding = 5,
+                    padding = 60,
                     offset = h_screen - h_adminbar - h_mobileheader - h_logo - h_action - padding;
 
                 // Don't allow the margin to pull the icons up into the content

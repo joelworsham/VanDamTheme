@@ -129,6 +129,11 @@ class VanDam {
 			'description' => 'Widgets here will show on the right of the content.',
 		),
 		array(
+			'name'        => 'Home',
+			'id'          => 'home',
+			'description' => 'Widgets here will show only on the homepage, just above the main content.',
+		),
+		array(
 			'name'          => 'Footer',
 			'id'            => 'footer',
 			'description'   => 'The site footer.',

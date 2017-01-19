@@ -1,9 +1,17 @@
-#content-sidebar {
+#site-content #content-sidebar {
   padding-left: 0;
 
   .sidebar-widgets {
     list-style: none !important;
     margin: 0;
+
+    @media #{$small-only} {
+      padding-left: 0;
+    }
+
+    @media #{$medium-only} {
+      padding-left: 0;
+    }
   }
 
   .testimonial {

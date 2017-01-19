@@ -22,11 +22,11 @@ module.exports = function (grunt) {
                 tasks: ['sass:admin', 'autoprefixer:admin', 'notify:sass_admin']
             },
             js: {
-                files: ['assets/js/*.js'],
+                files: ['assets/js/source/*.js'],
                 tasks: ['uglify:front', 'notify:js']
             },
             js_admin: {
-                files: ['assets/js/admin/*.js'],
+                files: ['assets/js/source/admin/*.js'],
                 tasks: ['uglify:admin', 'notify:js_admin']
             },
             livereload: {
@@ -72,22 +72,11 @@ module.exports = function (grunt) {
             },
             front: {
                 files: {
-                    'script.js': [
+                    'assets/js/vandam.min.js': [
                         // Vendor files
-                        'assets/vendor/js/modernizr.js',
-                        'assets/vendor/js/fastclick.js',
-                        'assets/vendor/js/placeholder.js',
-                        'assets/vendor/js/jquery.cookie.js',
-                        'assets/vendor/js/jquery.shuffle.min.js',
-                        'assets/vendor/js/foundation/foundation.js',
-                        'assets/vendor/js/foundation/foundation.accordion.js',
-                        'assets/vendor/js/foundation/foundation.equalizer.js',
-
-                        // Included dynamically in header.php
-                        '!assets/vendor/js/html5.js',
-
-                        // Theme scripts
-                        'assets/js/*.js'
+                        'assets/js/source/deps/*.js',
+                        'assets/js/source/*.js',
+                        '!assets/js/source/googlemaps.js'
                     ]
                 }
             },
