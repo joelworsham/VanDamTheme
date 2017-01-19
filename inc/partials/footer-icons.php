@@ -16,7 +16,7 @@ $icons = array(
 		'img' => 'bbb.png',
 	),
 	array(
-		'alt' => 'Grand Rapids, MI Remodeling Company, HBA Of Western Michigan Logo Image - VanDam & Krusinga Building And Restoration',
+		'alt' => 'Photo Of Logo For Association Involving Flood Damage Restoration - VanDam & Krusinga Building and Restoration',
 		'link' => 'http://hbawest.com/',
 		'img' => 'hbawm.png',
 	),

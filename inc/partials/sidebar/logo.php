@@ -14,7 +14,7 @@
 		?>
 
 		<p class="address">
-			Kalamazoo &bull; Grand Rapids &bull; South Haven
+			<a href="/contact-us/kalamazoo">Kalamazoo</a> &bull; <a href="/contact-us/grandrapids">Grand Rapids</a> &bull; <a href="/contact-us/southhaven">South Haven</a>
 		</p>
 	</div>
 </header>
